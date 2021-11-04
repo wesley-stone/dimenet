@@ -10,6 +10,7 @@ class DataProvider:
         self.data_container = data_container
         self._ndata = len(data_container)
         self.nsamples = {'train': ntrain, 'val': nvalid, 'test': len(data_container) - ntrain - nvalid}
+        print(f'train: {ntrain}, val: {nvalid}, test: {self.nsamples["test"]}')
         self.batch_size = batch_size
 
         # Random state parameter, such that random operations are reproducible if wanted

@@ -15,6 +15,7 @@ class DataContainer:
                 setattr(self, key, data_dict[key])
             else:
                 setattr(self, key, None)
+        print(self.target_keys)
         self.targets = np.stack([data_dict[key] for key in self.target_keys], axis=1)
 
         if self.N is None:
@@ -69,7 +70,6 @@ class DataContainer:
             Dij = np.linalg.norm(R[:, None, :] - R[None, :, :], axis=-1)
             adj_matrices.append(sp.csr_matrix(Dij <= self.cutoff))
             adj_matrices[-1] -= sp.eye(n, dtype=np.bool)
-
         # Entry x,y is edge x<-y (!)
         adj_matrix = self._bmat_fast(adj_matrices)
         # Entry x,y is edgeid x<-y (!)
